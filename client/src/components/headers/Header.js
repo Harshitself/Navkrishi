@@ -1,9 +1,10 @@
-import React, {useContext, useState} from 'react'
-import {GlobalState} from '../../GlobalState'
+import React, { useContext, useState } from 'react'
+import { GlobalState } from '../../GlobalState'
 import Menu from './icon/menu.svg'
 import Close from './icon/close.svg'
 import Cart from './icon/cart.svg'
-import {Link} from 'react-router-dom'
+import logoji from './icon/logoji.png'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 function Header() {
@@ -13,16 +14,16 @@ function Header() {
     const [cart] = state.userAPI.cart
     const [menu, setMenu] = useState(false)
 
-    const logoutUser = async () =>{
+    const logoutUser = async () => {
         await axios.get('/user/logout')
-        
+
         localStorage.removeItem('firstLogin')
-        
+
         window.location.href = "/";
     }
 
-    const adminRouter = () =>{
-        return(
+    const adminRouter = () => {
+        return (
             <>
                 <li><Link to="/create_product">Create Product</Link></li>
                 <li><Link to="/category">Categories</Link></li>
@@ -30,15 +31,15 @@ function Header() {
         )
     }
 
-    const loggedRouter = () =>{
-        return(
+    const loggedRouter = () => {
+        return (
             <>
-                <li><Link to="/history">History</Link></li>
+                {/* <li><Link to="/history">History</Link></li> */}
+                <li><Link to="/history">{isAdmin ? '' : 'History'}</Link></li>
                 <li><Link to="/" onClick={logoutUser}>Logout</Link></li>
             </>
         )
     }
-
 
     const styleMenu = {
         left: menu ? 0 : "-100%"
@@ -50,14 +51,24 @@ function Header() {
                 <img src={Menu} alt="" width="30" />
             </div>
 
+            <div className='image-container'>
+                <img src={logoji} alt="" />
+            </div>
+
             <div className="logo">
                 <h1>
-                    <Link to="/">{isAdmin ? 'Admin' : 'DevAT Shop'}</Link>
+                    <Link to="/">{isAdmin ? 'Admin' : 'NavKrishi'}</Link>
                 </h1>
             </div>
 
             <ul style={styleMenu}>
-                <li><Link to="/">{isAdmin ? 'Products' : 'Shop'}</Link></li>
+                <li> <Link to="/">HOME </Link></li>
+                
+                {/* <li> <Link to="/News">BLOGS </Link></li> */}
+
+                <li> <Link to="/BlogComponent">BLOGS </Link></li>
+
+                <li><Link to="/Shop">{isAdmin ? 'Products' : 'Shop'}</Link></li>
 
                 {isAdmin && adminRouter()}
 
@@ -72,15 +83,15 @@ function Header() {
             </ul>
 
             {
-                isAdmin ? '' 
-                :<div className="cart-icon">
-                    <span>{cart.length}</span>
-                    <Link to="/cart">
-                        <img src={Cart} alt="" width="30" />
-                    </Link>
-                </div>
+                isAdmin ? ''
+                    : <div className="cart-icon">
+                        <span>{cart.length}</span>
+                        <Link to="/cart">
+                            <img src={Cart} alt="" width="30" />
+                        </Link>
+                    </div>
             }
-            
+
         </header>
     )
 }

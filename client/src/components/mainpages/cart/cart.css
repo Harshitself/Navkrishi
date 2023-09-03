@@ -2,7 +2,10 @@
     position: relative;
     border: 1px solid #ccc;
     transform: scaleY(0.98);
+    /* height: 300px; */
 }
+
+  
 .amount span{
     color: crimson;
     padding: 0 20px;
@@ -30,3 +33,14 @@
 .total h3{
     color: crimson;
 }
+.button {
+    background-color:#008CBA; /* Green */
+    border: none;
+    color: white;
+    padding: 6px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+
+  }

@@ -85,12 +85,12 @@ function Cart() {
             {
                 cart.map(product => (
                     <div className="detail cart" key={product._id}>
-                        <img src={product.images.url} alt="" />
+                        <img className='cart-img' src={product.images.url} alt="" />
 
                         <div className="box-detail">
                             <h2>{product.title}</h2>
 
-                            <h3>$ {product.price * product.quantity}</h3>
+                            <h3>₹ {product.price * product.quantity}</h3>
                             <p>{product.description}</p>
                             <p>{product.content}</p>
 
@@ -110,10 +110,16 @@ function Cart() {
             }
 
             <div className="total">
-                <h3>Total: $ {total}</h3>
+                <h3>Total: ₹ {total}</h3>
                 <PaypalButton
                 total={total}
                 tranSuccess={tranSuccess} />
+                 <h2 className='button'>Googlepay</h2>
+                 <h2 className='button'>Cash on Delivery</h2>
+                 <h2 className='button'>Paytm</h2>
+            </div>
+            <div className="total">
+              
             </div>
         </div>
     )

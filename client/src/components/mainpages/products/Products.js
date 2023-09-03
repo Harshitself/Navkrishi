@@ -70,7 +70,7 @@ function Products() {
             </div>
         }
 
-        <div className="products">
+        <div className="products" >
             {
                 products.map(product => {
                     return <ProductItem key={product._id} product={product}

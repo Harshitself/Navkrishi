@@ -10,8 +10,16 @@ import Cart from './cart/Cart'
 import NotFound from './utils/not_found/NotFound'
 import Categories from './categories/Categories'
 import CreateProduct from './createProduct/CreateProduct'
+import News from './blogs/News'
+import Home from './Home/Home'
+import Aboutpage from './about/About'
 
 import {GlobalState} from '../../GlobalState'
+import BlogComponent from './newBlog/AllBlogs'
+import BlogDetail from './newBlog/BlogDetail'
+
+// import AboutPage from './about/About'
+
 
 
 function Pages() {
@@ -21,8 +29,18 @@ function Pages() {
 
 
     return (
+        <>
         <Switch>
-            <Route path="/" exact component={Products} />
+            <Route path="/" exact component={Home} />
+
+            {/* <Route path="/News" exact component={News} /> */}
+            <Route path="/BlogComponent" exact component={BlogComponent} />
+            {/* <Route path="/BlogDetail" exact component={BlogDetail} /> */}
+            <Route path="/blog/:id" component={BlogDetail} />
+
+            
+
+            <Route path="/Shop" exact component={Products} />
             <Route path="/detail/:id" exact component={DetailProduct} />
 
             <Route path="/login" exact component={isLogged ? NotFound : Login} />
@@ -37,9 +55,12 @@ function Pages() {
 
             <Route path="/cart" exact component={Cart} />
 
+            <Route path="/About" exact component={Aboutpage} />
+
 
             <Route path="*" exact component={NotFound} />
         </Switch>
+        </>
     )
 }
 
